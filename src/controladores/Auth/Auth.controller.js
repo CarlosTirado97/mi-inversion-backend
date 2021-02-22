@@ -1,25 +1,24 @@
-const {AuthService} = require('../../servicios')
+const { AuthService } = require('../../servicios')
 const authService = new AuthService()
-const {Forbidden,HttpError} = require('../../errors')
+const { LoginSchema } = require('../../utils/schemas')
+const validateBody = require('../../utils/validateBody')
 
 class AuthController {
-
     async login(req, res, next) {
-        let { user, password } = req.body
-
-        try {    
-            const auth = await authService.login({ user, password })
-            res.json({ token: auth.token, auth: auth.usuario })    
-            
-        } catch (error) {  
-            return next(error)  
-        }     
+        try {
+            validateBody(LoginSchema, req.body)
+            let { User, Password } = req.body
+            const auth = await authService.login({ User, Password })
+            res.json({ token: auth.token, auth: auth.usuario })
+        } catch (error) {
+            console.log(error)
+            return next(error)
+        }
     }
 
     async verify(req, res) {
-        res.send(req.auth)
+        res.json(req.auth)
     }
- 
 }
 
 module.exports = AuthController

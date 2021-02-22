@@ -1,7 +1,7 @@
 module.exports = {
-    Token: require('./Token/Token'),
+    Token: require('./Token'),
     Middleware: {
         Auth: require('./Middlewares/auth.middleware')
     },
-    ConfigDB:require('./configDB')
+    ConfigDB: require('./configDB')
 }
