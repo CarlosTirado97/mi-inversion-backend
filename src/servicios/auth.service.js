@@ -1,14 +1,14 @@
-const { AuthDAO } = require('../../dao')
+const { AuthDAO } = require('../dao')
 const authDAO = new AuthDAO()
-const { Usuario, Auth } = require('../../modelos')
-const { Unauthorized } = require('../../errors')
-const { Token } = require('../../utils')
+const { Usuario, Auth } = require('../modelos')
+const { Unauthorized } = require('../errors')
+const { Token } = require('../utils')
 
 class AuthService {
     async login({ User, Password }) {
         const usuario = await authDAO.login({ User, Password })
 
-        if (usuario.Password != Password) {
+        if (!usuario.id || usuario.Password != Password) {
             throw new Unauthorized('Credenciales incorrectas')
         }
         const auth = new Auth()

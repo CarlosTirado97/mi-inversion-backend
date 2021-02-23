@@ -1,3 +1,4 @@
 module.exports = {
-    AuthRoutes:require('./Auth/auth.routes')
+    AuthRoutes: require('./auth.routes'),
+    PlanesRoutes: require('./planes.routes')
 }

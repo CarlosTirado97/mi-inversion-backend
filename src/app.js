@@ -4,33 +4,28 @@ const express = require('express')
 const app = express()
 const bodyparser = require('body-parser')
 const cors = require('cors')
-const { AuthRoutes } = require('./rutas')
+const { AuthRoutes, PlanesRoutes } = require('./rutas')
+const { Middleware } = require('./utils/')
 
 //bodyparser
 app.use(bodyparser.json())
 app.use(bodyparser.urlencoded({ extended: false }))
 
 //cors
-app.use(cors({
-    origin:'*'
-}))
-
+app.use(
+    cors({
+        origin: '*'
+    })
+)
 
 //rutas
 
-app.use('/auth',AuthRoutes)
+app.use('/auth', AuthRoutes)
+app.use('/planes', PlanesRoutes)
 
-app.use((err, req, res, next) => {
-    console.log(err)
-    const { message, status } = err
-    res.status(status || 500).json({
-        err: {
-            message: message || 'Internal Server Error'
-        }
-    })
-})
+app.use(Middleware.ErrorHandler)
 
-process.on("unhandledRejection", (err) => {
+process.on('unhandledRejection', (err) => {
     console.log(err)
 })
 

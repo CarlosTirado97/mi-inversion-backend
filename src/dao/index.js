@@ -1,3 +1,4 @@
 module.exports = {
-    AuthDAO: require('./Auth/auth.dao')
+    AuthDAO: require('./auth.dao'),
+    PlanesDAO: require('./planes.dao')
 }

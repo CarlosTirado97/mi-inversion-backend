@@ -1,6 +1,6 @@
 const router = require('express').Router()
-const { AuthController } = require('../../controladores/')
-const { Middleware } = require('../../utils')
+const { AuthController } = require('../controladores')
+const { Middleware } = require('../utils')
 
 const authController = new AuthController()
 

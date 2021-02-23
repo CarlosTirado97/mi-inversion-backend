@@ -1,11 +1,9 @@
 class Usuario {
-
     constructor() {
-        this.id = 0
+        this.id
         this.User
         this.Password
     }
-
 }
 
 module.exports = Usuario
