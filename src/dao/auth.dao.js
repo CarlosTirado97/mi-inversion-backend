@@ -16,6 +16,8 @@ class AuthDAO {
             usuario.Password = result.recordset[0].Password
         }
 
+        await Conexion.cerrarConexion(request)
+
         return usuario
     }
 }

@@ -49,6 +49,14 @@ class Conexion {
             return new Error(error)
         }
     }
+
+    static async cerrarConexion(conexion) {
+        try {
+            conexion.close()
+        } catch (error) {
+            return new Error(error)
+        }
+    }
 }
 
 module.exports = Conexion

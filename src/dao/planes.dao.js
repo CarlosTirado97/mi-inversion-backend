@@ -21,6 +21,8 @@ class PlanesDAO {
             planes.push(plan)
         })
 
+        await Conexion.cerrarConexion(request)
+
         return planes
     }
 
@@ -41,6 +43,8 @@ class PlanesDAO {
             plan.TasaMensual = response.recordset[0].TasaMensual
             plan.Duracion = response.recordset[0].Duracion
         }
+
+        await Conexion.cerrarConexion(request)
 
         return plan
     }
@@ -65,6 +69,8 @@ class PlanesDAO {
             await request.execute('SP_IME_PLANES')
 
             await transaccion.commit()
+
+            await Conexion.cerrarConexion(request)
 
             return true
         } catch (error) {
@@ -95,6 +101,8 @@ class PlanesDAO {
 
             await transaccion.commit()
 
+            await Conexion.cerrarConexion(request)
+
             return true
         } catch (error) {
             await transaccion.rollback()
@@ -123,6 +131,8 @@ class PlanesDAO {
             await request.execute('SP_IME_PLANES')
 
             await transaccion.commit()
+
+            await Conexion.cerrarConexion(request)
 
             return true
         } catch (error) {
