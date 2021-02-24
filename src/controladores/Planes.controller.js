@@ -34,7 +34,6 @@ class PlanesController {
     async insertarPlan(req, res, next) {
         try {
             ValidateBody(Schemas.PlanSchema, req.body)
-
             const plan = new Plan(req.body)
             await planesService.insertarPlan(plan)
 
@@ -54,8 +53,9 @@ class PlanesController {
             ValidateBody(Schemas.PlanSchema, req.body)
 
             const plan = new Plan(req.body)
+            plan.id = id
 
-            await planesService.modificarPlan(plan, id)
+            await planesService.modificarPlan(plan)
 
             res.send('Plan modificado con exito')
         } catch (error) {

@@ -13,8 +13,8 @@ class PlanesService {
     async insertarPlan(plan) {
         return await planesDAO.insertarPlan(plan)
     }
-    async modificarPlan(plan, id) {
-        let planModificar = await this.buscarPorId(id)
+    async modificarPlan(plan) {
+        let planModificar = await this.buscarPorId(plan.id)
 
         planModificar.Nombre = plan.Nombre
         planModificar.InversionMinima = plan.InversionMinima
@@ -22,7 +22,7 @@ class PlanesService {
         planModificar.TasaMensual = plan.TasaMensual
         planModificar.Duracion = plan.Duracion
 
-        return await planesDAO.modificarPlan(planModificar, id)
+        return await planesDAO.modificarPlan(planModificar)
     }
 
     async buscarPorId(id) {

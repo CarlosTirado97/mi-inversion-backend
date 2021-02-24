@@ -4,6 +4,8 @@ const Token = require('../Token')
 let auth = async (req, res, next) => {
     const authValue = req.get('authorization') || req.body.authorization
 
+    console.log(authValue)
+
     if (!authValue || (authValue && authValue.trim() == 'Bearer')) {
         return next(new Forbidden('No se envio el token'))
     }

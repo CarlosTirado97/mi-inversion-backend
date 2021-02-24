@@ -60,6 +60,7 @@ class PlanesDAO {
             request.input('InversionMaxima', plan.InversionMaxima)
             request.input('TasaMensual', plan.TasaMensual)
             request.input('Duracion', plan.Duracion)
+            request.input('id', plan.id)
 
             await request.execute('SP_IME_PLANES')
 
@@ -73,7 +74,7 @@ class PlanesDAO {
         }
     }
 
-    async modificarPlan(plan, id) {
+    async modificarPlan(plan) {
         let transaccion
         try {
             transaccion = await Conexion.traerTransaccion()
@@ -88,7 +89,7 @@ class PlanesDAO {
             request.input('InversionMaxima', plan.InversionMaxima)
             request.input('TasaMensual', plan.TasaMensual)
             request.input('Duracion', plan.Duracion)
-            request.input('id', id)
+            request.input('id', plan.id)
 
             await request.execute('SP_IME_PLANES')
 
@@ -111,6 +112,11 @@ class PlanesDAO {
 
             const request = await Conexion.traerRequest(transaccion)
 
+            request.input('Nombre', plan.Nombre)
+            request.input('InversionMinima', plan.InversionMinima)
+            request.input('InversionMaxima', plan.InversionMaxima)
+            request.input('TasaMensual', plan.TasaMensual)
+            request.input('Duracion', plan.Duracion)
             request.input('id', plan.id)
             request.input('func', 'E')
 

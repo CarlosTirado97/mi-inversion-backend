@@ -1,6 +1,6 @@
 const HttpError = require('./HttpError')
 
-class Forbidden extends HttpError {
+class BadRequest extends HttpError {
     constructor(message) {
         super(message)
         //this.message = message
@@ -8,4 +8,4 @@ class Forbidden extends HttpError {
     }
 }
 
-module.exports = Forbidden
+module.exports = BadRequest
